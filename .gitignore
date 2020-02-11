@@ -1,5 +1,7 @@
 # NodeJS
 node_modules/
+dist/
+.cache/
 
 # env
 .env
