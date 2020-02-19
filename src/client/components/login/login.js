@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Login = () => {
-    return <div>Login</div>;
+    return <a href="/spotify-login">Log with Spotify</a>;
 };
 
 export default Login;

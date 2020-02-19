@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Login from './components/login/login';
 import './public/sass/style.scss';
 
 const App = () => {
     return (
-        <div>
+        <Fragment>
             <Switch>
-                <Route exact path="/">
+                <Route path="/login">
                     <Login />
                 </Route>
             </Switch>
-        </div>
+        </Fragment>
     );
 };
 
