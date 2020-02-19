@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {Fragment, useEffect} from 'react';
 
 const Login = () => {
-    return <a href="/spotify-login">Log with Spotify</a>;
+    useEffect(() => {
+        document.title = 'Spotify Stats - Login';
+    }, []);
+    return (
+        <main>
+            <div id="login-wrapper">
+                <h1>Spotify Stats</h1>
+                <a className="btn-default" href="/spotify-login">
+                    Log with Spotify
+                </a>
+            </div>
+        </main>
+    );
 };
 
 export default Login;

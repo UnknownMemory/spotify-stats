@@ -1,1 +1,50 @@
-@import '_reset.scss'
+@import '_fonts.scss';
+@import '_reset.scss';
+
+$base_color: #030303;
+$base_color_white: #fff;
+
+body,
+html {
+    background-color: $base_color;
+    font-size: 16px;
+    font-family: CircularSpUI-Book, sans-serif;
+}
+
+h1 {
+    font-family: CircularSpUI-Book, sans-serif;
+    font-size: 3.6em;
+    color: $base_color_white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-default {
+    padding: 10px 15px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 14px;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: $base_color_white;
+        color: $base_color;
+    }
+}
+
+
+/* Login */
+
+#login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Mobile */
+@media (max-width: 575.98px) {}

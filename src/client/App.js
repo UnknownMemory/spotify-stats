@@ -7,6 +7,7 @@ import {
     Redirect
 } from 'react-router-dom';
 import Login from './components/login/login';
+import TopArtists from './components/topartists/topartists';
 import './public/sass/style.scss';
 
 const App = () => {
@@ -17,13 +18,16 @@ const App = () => {
             .then(response => response.json())
             .then(data => setIsAuthenticated(data.isAuthenticated));
     }, []);
+
     return (
         <Fragment>
             <Switch>
                 <Route path="/login">
                     <Login />
                 </Route>
-                <Route exact path="/"></Route>
+                <Route exact path="/">
+                    <TopArtists />
+                </Route>
             </Switch>
             {isAuthenticated ? (
                 <Redirect exact to="/" />
