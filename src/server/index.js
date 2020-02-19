@@ -4,6 +4,7 @@ import APP_ROOT from 'app-root-path';
 import request from 'request';
 import querystring from 'querystring';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 require('dotenv').config();
 
@@ -34,7 +35,9 @@ app.use(
         extended: false
     })
 );
-app.use(express.static(APP_ROOT + '/dist/client')).use(cookieParser());
+app.use(express.static(APP_ROOT + '/dist/client'))
+    .use(cookieParser())
+    .use(cors());
 
 app.get('/spotify-login', (req, res) => {
     const state = generateRandomString(16);
@@ -53,7 +56,7 @@ app.get('/spotify-login', (req, res) => {
     );
 });
 
-app.get('/callback', (req, res) => {
+app.get('/callback', async (req, res) => {
     const code = req.query.code || null;
     const state = req.query.state || null;
     const storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -122,7 +125,7 @@ app.get('/callback', (req, res) => {
     }
 });
 
-app.get('/refresh_token', (req, res) => {
+app.get('/refresh_token', async (req, res) => {
     const refresh_token = req.query.refresh_token;
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
@@ -149,11 +152,13 @@ app.get('/refresh_token', (req, res) => {
     });
 });
 
-app.get('/api/is-login', (req, res) => {
+app.get('/api/is-authenticated', async (req, res) => {
     if (req.cookies.access_token && req.cookies.refresh_token) {
-        return true;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({isAuthenticated: true}));
     } else {
-        return false;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({isAuthenticated: false}));
     }
 });
 
