@@ -46,13 +46,13 @@ app.get('/spotify-login', (req, res) => {
     const scope = 'user-top-read';
     res.redirect(
         'https://accounts.spotify.com/authorize?' +
-            querystring.stringify({
-                response_type: 'code',
-                client_id: CLIENT_ID,
-                scope: scope,
-                redirect_uri: CALLBACK_URL,
-                state: state
-            })
+        querystring.stringify({
+            response_type: 'code',
+            client_id: CLIENT_ID,
+            scope: scope,
+            redirect_uri: CALLBACK_URL,
+            state: state
+        })
     );
 });
 
@@ -63,9 +63,9 @@ app.get('/callback', async (req, res) => {
     if (state === null || state !== storedState) {
         res.redirect(
             '/#' +
-                querystring.stringify({
-                    error: 'state_mismatch'
-                })
+            querystring.stringify({
+                error: 'state_mismatch'
+            })
         );
     } else {
         res.clearCookie(stateKey);
@@ -77,8 +77,7 @@ app.get('/callback', async (req, res) => {
                 grant_type: 'authorization_code'
             },
             headers: {
-                Authorization:
-                    'Basic ' +
+                Authorization: 'Basic ' +
                     new Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString(
                         'base64'
                     )
@@ -86,7 +85,7 @@ app.get('/callback', async (req, res) => {
             json: true
         };
 
-        request.post(authOptions, function(error, response, body) {
+        request.post(authOptions, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
                 const refresh_token = body.refresh_token;
@@ -116,9 +115,9 @@ app.get('/callback', async (req, res) => {
             } else {
                 res.redirect(
                     '/#' +
-                        querystring.stringify({
-                            error: 'invalid_token'
-                        })
+                    querystring.stringify({
+                        error: 'invalid_token'
+                    })
                 );
             }
         });
@@ -130,8 +129,7 @@ app.get('/refresh_token', async (req, res) => {
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
         headers: {
-            Authorization:
-                'Basic ' +
+            Authorization: 'Basic ' +
                 new Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString(
                     'base64'
                 )
@@ -155,11 +153,31 @@ app.get('/refresh_token', async (req, res) => {
 app.get('/api/is-authenticated', async (req, res) => {
     if (req.cookies.access_token && req.cookies.refresh_token) {
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({isAuthenticated: true}));
+        res.end(JSON.stringify({
+            isAuthenticated: true
+        }));
     } else {
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({isAuthenticated: false}));
+        res.end(JSON.stringify({
+            isAuthenticated: false
+        }));
     }
+});
+
+app.get('/api/top/:type/:time_range', async (req, res) => {
+    const access_token = req.cookies.access_token;
+    console.log(access_token)
+    const options = {
+        url: 'https://api.spotify.com/v1/me/top/' + req.params.type + '?time_range=' + req.params.time_range,
+        headers: {
+            Authorization: 'Bearer ' + access_token
+        },
+        json: true
+    };
+
+    request.get(options, (error, response, body) => {
+        res.send(JSON.stringify(body));
+    });
 });
 
 app.get('/*', (req, res) => {

@@ -1,8 +1,8 @@
 import React, {Fragment, useEffect} from 'react';
 
-const TopArtists = () => {
+const Top = () => {
     useEffect(() => {
-        document.title = 'Spotify Stats - Top Artists';
+        document.title = 'Spotify Stats';
     }, []);
     return (
         <main>
@@ -11,4 +11,4 @@ const TopArtists = () => {
     );
 };
 
-export default TopArtists;
+export default Top;
