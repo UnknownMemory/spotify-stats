@@ -7,7 +7,7 @@ import {
     Redirect
 } from 'react-router-dom';
 import Login from './components/login/login';
-import Top from './components/top/top';
+import Main from './components/main/main';
 import './public/sass/style.scss';
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
                     <Login />
                 </Route>
                 <Route exact path="/">
-                    <Top />
+                    <Main />
                 </Route>
             </Switch>
             {isAuthenticated ? (

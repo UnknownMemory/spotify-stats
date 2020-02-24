@@ -3,5 +3,6 @@
     "bracketSpacing": false,
     "tabWidth": 4,
     "proseWrap": "never",
-    "jsxBracketSameLine": true
+    "jsxBracketSameLine": true,
+    "printWidth": 120
 }

@@ -166,7 +166,6 @@ app.get('/api/is-authenticated', async (req, res) => {
 
 app.get('/api/top/:type/:time_range', async (req, res) => {
     const access_token = req.cookies.access_token;
-    console.log(access_token)
     const options = {
         url: 'https://api.spotify.com/v1/me/top/' + req.params.type + '?time_range=' + req.params.time_range,
         headers: {

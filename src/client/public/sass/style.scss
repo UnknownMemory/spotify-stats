@@ -3,6 +3,14 @@
 
 $base_color: #030303;
 $base_color_white: #fff;
+$breakpoints: (phone:576px, tablet:768px, desktop:992px);
+
+@mixin flex_center($column: 'row') {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $column;
+}
 
 body,
 html {
@@ -24,6 +32,7 @@ a {
 .btn-default {
     padding: 10px 15px;
     border: 2px solid #fff;
+    border-radius: 8px;
     color: #fff;
     font-size: 14px;
     transition: 0.3s;
@@ -38,13 +47,17 @@ a {
 /* Login */
 
 #login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    @include flex_center(column);
     width: 100vw;
     height: 100vh;
 }
 
-/* Mobile */
-@media (max-width: 575.98px) {}
+/* Main */
+#main-header {
+    position: fixed;
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
