@@ -1,11 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import Login from './components/login/login';
 import Main from './components/main/main';
 import './public/sass/style.scss';
@@ -29,11 +23,7 @@ const App = () => {
                     <Main />
                 </Route>
             </Switch>
-            {isAuthenticated ? (
-                <Redirect exact to="/" />
-            ) : (
-                <Redirect exact to="/login" />
-            )}
+            {isAuthenticated ? <Redirect exact to="/" /> : <Redirect exact to="/login" />}
         </Fragment>
     );
 };

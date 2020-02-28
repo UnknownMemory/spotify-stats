@@ -1,9 +1,14 @@
 @import '_fonts.scss';
 @import '_reset.scss';
 
-$base_color: #030303;
-$base_color_white: #fff;
-$breakpoints: (phone:576px, tablet:768px, desktop:992px);
+$base_color: #904b5e;
+$accent_color: #9472f9;
+
+$size-phone: 576px;
+$size-tablet: 768px;
+$size-desktop: 992px;
+
+/* Mixin */
 
 @mixin flex_center($column: 'row') {
     display: flex;
@@ -12,9 +17,27 @@ $breakpoints: (phone:576px, tablet:768px, desktop:992px);
     flex-direction: $column;
 }
 
+@mixin mobile {
+    @media (max-width: #{$size-phone}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$size-tablet}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$size-desktop}) {
+        @content;
+    }
+}
+
 body,
 html {
-    background-color: $base_color;
+    background-color: #030303;
     font-size: 16px;
     font-family: CircularSpUI-Book, sans-serif;
 }
@@ -22,42 +45,177 @@ html {
 h1 {
     font-family: CircularSpUI-Book, sans-serif;
     font-size: 3.6em;
-    color: $base_color_white;
+    color: white;
 }
 
 a {
     text-decoration: none;
+    color: white;
+
+    &:active {
+        color: white;
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
 }
 
 .btn-default {
     padding: 10px 15px;
-    border: 2px solid #fff;
+    border: 2px solid white;
     border-radius: 8px;
-    color: #fff;
+    color: white;
     font-size: 14px;
     transition: 0.3s;
+    outline: 0;
 
     &:hover {
-        background-color: $base_color_white;
-        color: $base_color;
+        background-color: white;
+        color: 030303;
+    }
+
+    &.no-border {
+        border: none;
+        cursor: pointer;
+        overflow: visible;
+        background-color: transparent;
     }
 }
 
-
-/* Login */
-
-#login-wrapper {
-    @include flex_center(column);
-    width: 100vw;
-    height: 100vh;
+#main-header,
+#main-footer {
+    position: fixed;
 }
 
-/* Main */
-#main-header {
-    position: fixed;
+#main-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: $base_color !important;
+}
+
+#main-footer {
     width: 100vw;
     height: 7vh;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    button {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: CircularSpUI-Bold, sans-serif;
+
+        i {
+            font-size: 1.4em;
+        }
+    }
+}
+
+@include desktop {
+    /* Login Desktop */
+    #login-wrapper {
+        @include flex_center(column);
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@include mobile {
+    /* Main */
+    #main-header {
+        width: 100vw;
+        height: 7vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        #spotify-logo {
+            font-family: CircularSpUI-Bold, sans-serif;
+            color: white;
+            display: flex;
+            font-size: 14px;
+            align-items: center;
+
+            img {
+                width: 24px;
+                height: 24px;
+                margin-left: 15px;
+                margin-right: 5px;
+            }
+        }
+
+        button {
+            padding: 0;
+            margin-right: 15px;
+            height: 24px;
+            width: 24px;
+        }
+
+        #filter-list {
+            color: white;
+            font-size: 24px;
+        }
+    }
+
+    .filter-menu-enter-done {
+        transform: translateX(0) !important;
+    }
+
+    #mobile-filter {
+        width: 80vw;
+        height: 100vh;
+        position: absolute;
+        background-color: white;
+        transform: translateX(-80vw);
+        transition: 200ms;
+
+        #filters {
+            height: 100vh;
+            line-height: 32px;
+            position: relative;
+            padding: 20px 30px 0px;
+            font-family: CircularSpUI-Light, sans-serif;
+
+            #time-range {
+                font-family: CircularSpUI-Light, sans-serif;
+                margin-bottom: 20px;
+            }
+
+            #type {
+                border-top: 1px solid #e5e5e5;
+            }
+
+            .filter-title {
+                margin: 8px 0 0;
+                font-family: CircularSpUI-Black, sans-serif;
+            }
+
+            .filter-title:first-child {
+                margin: 20px 0 8px;
+            }
+
+            .selected {
+                font-family: CircularSpUI-Bold, sans-serif;
+            }
+
+            li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                i {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
 }

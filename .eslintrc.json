@@ -9,7 +9,9 @@
     ],
     "rules": {
         "react/prop-types": 0,
-        "no-console": 1
+        "no-console": 1,
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     },
     "plugins": ["react", "import", "jsx-a11y"],
     "parserOptions": {
@@ -17,7 +19,8 @@
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
-        }
+        },
+        "react-hooks"
     },
     "env": {
         "es6": true,

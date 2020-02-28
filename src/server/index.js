@@ -37,7 +37,8 @@ app.use(
 );
 app.use(express.static(APP_ROOT + '/dist/client'))
     .use(cookieParser())
-    .use(cors());
+    .use(cors())
+    .use('/static', express.static(APP_ROOT + '/src/client/public'));
 
 app.get('/spotify-login', (req, res) => {
     const state = generateRandomString(16);
