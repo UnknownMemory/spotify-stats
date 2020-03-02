@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 const Login = () => {
     useEffect(() => {
@@ -6,7 +6,7 @@ const Login = () => {
     }, []);
     return (
         <main>
-            <div id="login-wrapper">
+            <div className="login-wrapper">
                 <h1>Spotify Stats</h1>
                 <a className="btn-default" href="/spotify-login">
                     Log with Spotify

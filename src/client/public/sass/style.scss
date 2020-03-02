@@ -88,18 +88,18 @@ ul {
     }
 }
 
-#main-header,
-#main-footer {
+.main-header,
+.main-footer {
     position: fixed;
 }
 
-#main-wrapper {
+.main-wrapper {
     width: 100vw;
     height: 100vh;
     background-color: $base_color !important;
 }
 
-#main-footer {
+.main-footer {
     width: 100vw;
     height: 7vh;
     bottom: 0;
@@ -120,9 +120,18 @@ ul {
     }
 }
 
+.overlay-enter-done {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 200ms;
+}
+
 @include desktop {
+
     /* Login Desktop */
-    #login-wrapper {
+    .login-wrapper {
         @include flex_center(column);
         width: 100vw;
         height: 100vh;
@@ -130,15 +139,16 @@ ul {
 }
 
 @include mobile {
+
     /* Main */
-    #main-header {
+    .main-header {
         width: 100vw;
         height: 7vh;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        #spotify-logo {
+        .spotify-logo {
             font-family: CircularSpUI-Bold, sans-serif;
             color: white;
             display: flex;
@@ -160,7 +170,7 @@ ul {
             width: 24px;
         }
 
-        #filter-list {
+        .filter-list {
             color: white;
             font-size: 24px;
         }
@@ -170,7 +180,7 @@ ul {
         transform: translateX(0) !important;
     }
 
-    #mobile-filter {
+    .mobile-filter {
         width: 80vw;
         height: 100vh;
         position: absolute;
@@ -178,19 +188,19 @@ ul {
         transform: translateX(-80vw);
         transition: 200ms;
 
-        #filters {
+        .filters {
             height: 100vh;
             line-height: 32px;
             position: relative;
             padding: 20px 30px 0px;
             font-family: CircularSpUI-Light, sans-serif;
 
-            #time-range {
+            .time-range {
                 font-family: CircularSpUI-Light, sans-serif;
                 margin-bottom: 20px;
             }
 
-            #type {
+            .type {
                 border-top: 1px solid #e5e5e5;
             }
 
