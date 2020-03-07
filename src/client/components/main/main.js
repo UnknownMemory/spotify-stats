@@ -1,7 +1,8 @@
 import React, {useEffect, useState, useRef, Fragment} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import MobileMenu from './mobilemenu';
-import Top from '../top/top';
+import TopArtist from '../top/topartist';
+import TopTrack from '../top/toptrack';
 
 const Main = () => {
     const done = useRef(false);
@@ -38,6 +39,7 @@ const Main = () => {
 
     useEffect(() => {
         getData(type, timeRange);
+
         return () => {
             done.current = true;
         };
@@ -71,7 +73,17 @@ const Main = () => {
 
             <div className="main-wrapper">
                 <h1>{`Top ${type} of ${timeRangeName[timeRange]}`}</h1>
-                <ul>{data ? data.map(item => <Top key={item.id} item={item} type={type}></Top>) : null}</ul>
+                <ul>
+                    {data
+                        ? data.map((item, index) => {
+                              if (type == 'artists') {
+                                  return <TopArtist key={item.id} number={index + 1} item={item} />;
+                              } else if (type == 'tracks') {
+                                  return <TopTrack key={item.id} number={index + 1} item={item} />;
+                              }
+                          })
+                        : null}
+                </ul>
             </div>
         </Fragment>
     );

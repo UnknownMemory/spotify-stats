@@ -1,8 +1,9 @@
 @import '_fonts.scss';
 @import '_reset.scss';
 
-$base_color: #904b5e;
-$accent_color: #9472f9;
+$base_color: #e13356;
+$second_color: #030303;
+$accent_color: #f1ed7f;
 
 $size-phone: 576px;
 $size-tablet: 768px;
@@ -36,7 +37,7 @@ $size-desktop: 992px;
 }
 
 html {
-    background-color: #030303;
+    background-color: $second_color;
     font-size: 16px;
     font-family: CircularSpUI-Book, sans-serif;
 }
@@ -83,7 +84,7 @@ ul {
 
     &:hover {
         background-color: white;
-        color: 030303;
+        color: $second_color;
     }
 
     &.no-border {
@@ -105,30 +106,7 @@ ul {
     position: fixed;
 }
 
-.main-wrapper {
-    width: 100vw;
-    min-height: 100%;
-    padding-top: 14%;
-    text-align: center;
-    background-color: $base_color !important;
 
-    h1 {
-        font-size: 1.2em;
-    }
-
-    ul {
-        text-align: center;
-        padding: 0 15vw;
-
-        .item {
-            img {
-                width: 85px;
-                height: 85px;
-                object-fit: cover;
-            }
-        }
-    }
-}
 
 .main-footer {
     width: 100vw;
@@ -154,7 +132,7 @@ ul {
 .overlay-enter-done {
     width: 100vw;
     height: 100%;
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     transition: 200ms;
 }
@@ -165,6 +143,8 @@ ul {
     }
 
     /* Main */
+
+
     .main-header {
         width: 100vw;
         height: 7%;
@@ -174,7 +154,7 @@ ul {
 
         .spotify-logo {
             font-family: CircularSpUI-Bold, sans-serif;
-            color: white;
+            color: $second_color;
             display: flex;
             font-size: 0.875em;
             align-items: center;
@@ -192,11 +172,73 @@ ul {
             margin-right: 15px;
             height: 24px;
             width: 24px;
+
+            i {
+                color: $second_color;
+            }
         }
 
         .filter-list {
             color: white;
             font-size: 24px;
+        }
+    }
+
+    .main-wrapper {
+        width: 100vw;
+        min-height: 100%;
+        padding-top: 14%;
+        text-align: center;
+        background-color: $base_color !important;
+
+        h1 {
+            font-size: 1.2em;
+            margin: 0.67em 0;
+            color: $second_color;
+        }
+
+        ul {
+            text-align: left;
+            padding: 0 10vw;
+
+            .item {
+                margin-top: 25px;
+                display: grid;
+                grid-template-columns: 38px 85px 1fr;
+                grid-template-rows: 1fr;
+                justify-items: center;
+                align-items: center;
+
+
+                .item-number {
+                    display: inline-block;
+                    font-size: 1.2em;
+                    font-family: CircularSpUI-Bold, sans-serif;
+                }
+
+                img {
+                    width: 85px;
+                    height: 85px;
+                    object-fit: cover;
+                }
+
+                .item-text {
+                    display: inline-block;
+                    text-align: center;
+                    margin-left: 10px;
+                    color: $accent_color;
+
+                    span {
+                        display: block;
+                    }
+
+                    .artist {
+                        font-family: CircularSpUI-Bold, sans-serif;
+                    }
+                }
+
+
+            }
         }
     }
 
@@ -207,7 +249,7 @@ ul {
     .mobile-filter {
         width: 80vw;
         height: 100%;
-        position: absolute;
+        position: fixed;
         background-color: white;
         transform: translateX(-80vw);
         transition: 200ms;
