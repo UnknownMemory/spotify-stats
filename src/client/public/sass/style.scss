@@ -73,6 +73,10 @@ ul {
     padding-inline-start: 0;
 }
 
+button {
+    outline: 0;
+}
+
 .btn-default {
     padding: 10px 15px;
     border: 2px solid white;
@@ -80,7 +84,6 @@ ul {
     color: white;
     font-size: 0.875em;
     transition: 0.3s;
-    outline: 0;
 
     &:hover {
         background-color: white;
@@ -101,9 +104,33 @@ ul {
     height: 100%;
 }
 
-.main-header,
-.main-footer {
+.main-header {
+    font-family: CircularSpUI-Bold, sans-serif;
+    color: $second_color;
     position: fixed;
+}
+
+.main-wrapper {
+    width: 100vw;
+    min-height: 100%;
+    padding-top: 14%;
+    text-align: center;
+    background-color: $base_color !important;
+
+    ul {
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .item-text {
+        text-align: center;
+        color: $accent_color;
+
+        .artist {
+            font-family: CircularSpUI-Bold, sans-serif;
+        }
+    }
 }
 
 
@@ -137,14 +164,45 @@ ul {
     transition: 200ms;
 }
 
+/* Dropdown */
+.dropdown {
+    display: flex;
+    align-items: center;
+    border: none;
+    color: white;
+    transition: 0.3s;
+    font-size: 0.875em;
+    background-color: transparent;
+    font-family: CircularSpUI-Bold, sans-serif;
+
+
+    i {
+        display: inline-block;
+    }
+}
+
+@include desktop() {
+    .main-header {
+        .menu-btn {
+            display: none;
+        }
+    }
+
+    .mobile-filter {
+        display: none;
+    }
+}
+
 @include mobile {
     h1 {
         font-size: 2.6em;
     }
 
+    .dropdown {
+        display: none;
+    }
+
     /* Main */
-
-
     .main-header {
         width: 100vw;
         height: 7%;
@@ -153,8 +211,7 @@ ul {
         justify-content: space-between;
 
         .spotify-logo {
-            font-family: CircularSpUI-Bold, sans-serif;
-            color: $second_color;
+
             display: flex;
             font-size: 0.875em;
             align-items: center;
@@ -167,7 +224,7 @@ ul {
             }
         }
 
-        button {
+        .menu-btn {
             padding: 0;
             margin-right: 15px;
             height: 24px;
@@ -185,12 +242,6 @@ ul {
     }
 
     .main-wrapper {
-        width: 100vw;
-        min-height: 100%;
-        padding-top: 14%;
-        text-align: center;
-        background-color: $base_color !important;
-
         h1 {
             font-size: 1.2em;
             margin: 0.67em 0;
@@ -219,21 +270,14 @@ ul {
                 img {
                     width: 85px;
                     height: 85px;
-                    object-fit: cover;
                 }
 
                 .item-text {
                     display: inline-block;
-                    text-align: center;
                     margin-left: 10px;
-                    color: $accent_color;
 
                     span {
                         display: block;
-                    }
-
-                    .artist {
-                        font-family: CircularSpUI-Bold, sans-serif;
                     }
                 }
 

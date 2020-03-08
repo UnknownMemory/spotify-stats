@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, Fragment} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 const TopTrack = props => {
     useEffect(() => {}, [props.item]);
@@ -18,7 +18,7 @@ const TopTrack = props => {
         }
     };
 
-    return <Fragment>{renderItem()}</Fragment>;
+    return <React.Fragment>{renderItem()}</React.Fragment>;
 };
 
 export default TopTrack;

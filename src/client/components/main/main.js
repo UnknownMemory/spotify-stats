@@ -1,8 +1,9 @@
-import React, {useEffect, useState, useRef, Fragment} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import MobileMenu from './mobilemenu';
 import TopArtist from '../top/topartist';
 import TopTrack from '../top/toptrack';
+import Dropdown from './dropdown/dropdown';
 
 const Main = () => {
     const done = useRef(false);
@@ -46,17 +47,29 @@ const Main = () => {
     }, []);
 
     return (
-        <Fragment>
+        <React.Fragment>
             <div className="main-header">
                 <div className="spotify-logo">
                     <img src="/static/img/spotify_logo.png" alt="" />
                     Spotify Stats
                 </div>
-                <button className="btn-default no-border" onClick={() => setFilterMenu(true)}>
+                <button className="btn-default no-border menu-btn" onClick={() => setFilterMenu(true)}>
                     <i className="filter-list" className="material-icons">
                         menu
                     </i>
                 </button>
+                <Dropdown
+                    dropdownText="Type"
+                    options={{artists: 'Artists', tracks: 'Tracks'}}
+                    selected={handleType}></Dropdown>
+                <Dropdown
+                    dropdownText="Time range"
+                    options={{
+                        short_term: 'Last 4 weeks',
+                        medium_term: 'Last 6 months',
+                        long_term: 'All time'
+                    }}
+                    selected={handleTimeRange}></Dropdown>
             </div>
 
             <CSSTransition in={filterMenu} timeout={200} classNames="overlay">
@@ -85,7 +98,7 @@ const Main = () => {
                         : null}
                 </ul>
             </div>
-        </Fragment>
+        </React.Fragment>
     );
 };
 

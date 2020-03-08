@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, Fragment} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 const TopArtist = props => {
     useEffect(() => {}, [props.item]);
@@ -17,7 +17,7 @@ const TopArtist = props => {
         }
     };
 
-    return <Fragment>{renderItem()}</Fragment>;
+    return <React.Fragment>{renderItem()}</React.Fragment>;
 };
 
 export default TopArtist;

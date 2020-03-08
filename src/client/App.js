@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import Login from './components/login/login';
 import Main from './components/main/main';
@@ -14,7 +14,7 @@ const App = () => {
     }, []);
 
     return (
-        <Fragment>
+        <React.Fragment>
             <Switch>
                 <Route path="/login">
                     <Login />
@@ -24,7 +24,7 @@ const App = () => {
                 </Route>
             </Switch>
             {isAuthenticated ? <Redirect exact to="/" /> : <Redirect exact to="/login" />}
-        </Fragment>
+        </React.Fragment>
     );
 };
 
