@@ -105,13 +105,37 @@ button {
 }
 
 .main-header {
+    width: 100%;
+    height: 10%;
     font-family: CircularSpUI-Bold, sans-serif;
     color: $second_color;
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    .spotify-logo {
+        display: flex;
+        font-size: 0.875em;
+        align-items: center;
+        color: #fff;
+
+        img {
+            width: 36px;
+            height: 36px;
+            margin-left: 15px;
+            margin-right: 5px;
+        }
+    }
+
+    .dropdown-filter {
+        display: inline-flex;
+    }
 }
 
 .main-wrapper {
-    width: 100vw;
+    width: 100%;
     min-height: 100%;
     padding-top: 14%;
     text-align: center;
@@ -130,6 +154,10 @@ button {
         .artist {
             font-family: CircularSpUI-Bold, sans-serif;
         }
+    }
+
+    h1 {
+        display: none;
     }
 }
 
@@ -166,18 +194,78 @@ button {
 
 /* Dropdown */
 .dropdown {
+    position: relative;
     display: flex;
     align-items: center;
     border: none;
+    margin-right: 25px;
     color: white;
-    transition: 0.3s;
     font-size: 0.875em;
+    transition: 0.3s;
+
     background-color: transparent;
     font-family: CircularSpUI-Bold, sans-serif;
 
+    .dropdown-main {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .dropdown-text {
+
+            margin-right: 5px;
+        }
+
+
+    }
+
+    .dropdown-options {
+        position: absolute;
+        top: 100%;
+        display: flex;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        border-radius: 8px;
+        visibility: hidden;
+        transition: 0.5s;
+        opacity: 0;
+
+        button {
+            margin: 5px 0;
+            font-size: 1em;
+            border: none;
+            white-space: nowrap;
+            background-color: transparent;
+            font-family: CircularSpUI-Book, sans-serif;
+
+            &:hover {
+                color: #a0a0a0;
+            }
+        }
+
+        .selected-option {
+            font-family: CircularSpUI-Bold, sans-serif;
+        }
+    }
 
     i {
+        transition: 0.5s;
         display: inline-block;
+    }
+}
+
+/* Dropdown animation */
+.dropdown.dropdown-options-open-enter-done {
+    i {
+        transform: rotateX(180deg);
+    }
+
+    .dropdown-options {
+
+        opacity: 1;
+        visibility: visible;
     }
 }
 
@@ -186,6 +274,7 @@ button {
         .menu-btn {
             display: none;
         }
+
     }
 
     .mobile-filter {
@@ -204,11 +293,8 @@ button {
 
     /* Main */
     .main-header {
-        width: 100vw;
         height: 7%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
 
         .spotify-logo {
 
@@ -238,6 +324,10 @@ button {
         .filter-list {
             color: white;
             font-size: 24px;
+        }
+
+        .dropdown-filter {
+            display: none;
         }
     }
 

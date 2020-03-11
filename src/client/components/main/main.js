@@ -58,18 +58,22 @@ const Main = () => {
                         menu
                     </i>
                 </button>
-                <Dropdown
-                    dropdownText="Type"
-                    options={{artists: 'Artists', tracks: 'Tracks'}}
-                    selected={handleType}></Dropdown>
-                <Dropdown
-                    dropdownText="Time range"
-                    options={{
-                        short_term: 'Last 4 weeks',
-                        medium_term: 'Last 6 months',
-                        long_term: 'All time'
-                    }}
-                    selected={handleTimeRange}></Dropdown>
+                <div className="dropdown-filter">
+                    <Dropdown
+                        dropdownText="Type"
+                        options={{artists: 'Artists', tracks: 'Tracks'}}
+                        current={type}
+                        selected={handleType}></Dropdown>
+                    <Dropdown
+                        dropdownText="Time range"
+                        options={{
+                            short_term: 'Last 4 weeks',
+                            medium_term: 'Last 6 months',
+                            long_term: 'All time'
+                        }}
+                        current={timeRange}
+                        selected={handleTimeRange}></Dropdown>
+                </div>
             </div>
 
             <CSSTransition in={filterMenu} timeout={200} classNames="overlay">
