@@ -39,10 +39,10 @@ $size-desktop: 992px;
 html {
     background-color: $second_color;
     font-size: 16px;
+    height: 100%;
     font-family: CircularSpUI-Book, sans-serif;
 }
 
-html,
 body,
 main {
     height: 100%;
@@ -114,7 +114,6 @@ button {
     align-items: center;
     justify-content: space-between;
 
-
     .spotify-logo {
         display: flex;
         font-size: 0.875em;
@@ -142,17 +141,20 @@ button {
     background-color: $base_color !important;
 
     ul {
-        img {
-            object-fit: cover;
-        }
-    }
+        .item {
+            .item-number {
+                font-family: CircularSpUI-Bold, sans-serif;
+            }
 
-    .item-text {
-        text-align: center;
-        color: $accent_color;
+            .item-text {
+                text-align: center;
+                color: $accent_color;
 
-        .artist {
-            font-family: CircularSpUI-Bold, sans-serif;
+                .artist {
+                    display: block;
+                    font-family: CircularSpUI-Bold, sans-serif;
+                }
+            }
         }
     }
 
@@ -160,8 +162,6 @@ button {
         display: none;
     }
 }
-
-
 
 .main-footer {
     width: 100vw;
@@ -212,11 +212,8 @@ button {
         cursor: pointer;
 
         .dropdown-text {
-
             margin-right: 5px;
         }
-
-
     }
 
     .dropdown-options {
@@ -263,7 +260,6 @@ button {
     }
 
     .dropdown-options {
-
         opacity: 1;
         visibility: visible;
     }
@@ -274,7 +270,36 @@ button {
         .menu-btn {
             display: none;
         }
+    }
 
+    .main-wrapper {
+        ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+            row-gap: 200px;
+            justify-items: center;
+            align-items: center;
+
+            .item {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 250px 50px 25px 25px;
+                justify-items: center;
+                align-items: center;
+
+                .item-number {
+                    grid-row-start: 2;
+                }
+
+                img {
+                    object-fit: cover;
+                    width: 250px;
+                    height: 250px;
+                    grid-row-start: 1;
+                }
+            }
+        }
     }
 
     .mobile-filter {
@@ -295,9 +320,7 @@ button {
     .main-header {
         height: 7%;
 
-
         .spotify-logo {
-
             display: flex;
             font-size: 0.875em;
             align-items: center;
@@ -350,11 +373,9 @@ button {
                 justify-items: center;
                 align-items: center;
 
-
                 .item-number {
                     display: inline-block;
                     font-size: 1.2em;
-                    font-family: CircularSpUI-Bold, sans-serif;
                 }
 
                 img {
@@ -370,8 +391,6 @@ button {
                         display: block;
                     }
                 }
-
-
             }
         }
     }

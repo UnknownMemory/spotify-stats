@@ -67,9 +67,9 @@ const Main = () => {
                     <Dropdown
                         dropdownText="Time range"
                         options={{
-                            short_term: 'Last 4 weeks',
+                            long_term: 'All time',
                             medium_term: 'Last 6 months',
-                            long_term: 'All time'
+                            short_term: 'Last 4 weeks'
                         }}
                         current={timeRange}
                         selected={handleTimeRange}></Dropdown>

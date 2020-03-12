@@ -30,7 +30,6 @@ const Dropdown = props => {
     useEffect(() => {
         for (let [key, value] of Object.entries(props.options)) {
             if (key == props.current) {
-                console.log(true);
                 setCurrent(value);
             }
         }
