@@ -5,8 +5,9 @@ import request from 'request';
 import querystring from 'querystring';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 const app = express();
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -34,7 +35,7 @@ app.use(
         extended: false
     })
 );
-app.use(express.static(APP_ROOT + '/dist/client'))
+app.use(express.static(APP_ROOT + '/dist'))
     .use(cookieParser())
     .use(cors())
     .use('/static', express.static(APP_ROOT + '/src/client/public'));
@@ -189,9 +190,10 @@ app.get('/api/top/:type/:time_range', async (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-    res.sendFile(APP_ROOT + '/dist/client/index.html');
+    res.sendFile(APP_ROOT + '/dist/index.html');
 });
 
 app.listen(process.env.PORT, () => {
+    console.log(app.get('env'));
     console.log(`Express server started at ${process.env.PORT}`);
 });
