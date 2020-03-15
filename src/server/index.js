@@ -101,6 +101,7 @@ app.get('/callback', async (req, res) => {
                 res.cookie('access_token', access_token, {
                     httpOnly: true,
                     domain: req.hostname,
+                    maxAge: 3600000,
                     sameSite: true
                 }).cookie('refresh_token', refresh_token, {
                     httpOnly: true,
@@ -122,7 +123,7 @@ app.get('/callback', async (req, res) => {
 });
 
 app.get('/refresh_token', async (req, res) => {
-    const refresh_token = req.query.refresh_token;
+    const refresh_token = req.cookies.refresh_token;
     const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
         headers: {
@@ -137,9 +138,15 @@ app.get('/refresh_token', async (req, res) => {
     request.post(authOptions, (error, response, body) => {
         if (!error && response.statusCode === 200) {
             const access_token = body.access_token;
-            res.send({
-                access_token: access_token
+
+            res.cookie('access_token', access_token, {
+                httpOnly: true,
+                maxAge: 3600000,
+                domain: req.hostname,
+                sameSite: true
             });
+
+            res.redirect('/login');
         }
     });
 });
@@ -173,7 +180,11 @@ app.get('/api/top/:type/:time_range', async (req, res) => {
     };
 
     request.get(options, (error, response, body) => {
-        res.send(JSON.stringify(body));
+        if (body.error && body.error.status == 401) {
+            res.redirect('/refresh_token');
+        } else {
+            res.send(JSON.stringify(body));
+        }
     });
 });
 

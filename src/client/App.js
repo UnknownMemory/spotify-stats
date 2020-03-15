@@ -5,7 +5,8 @@ import Main from './components/main/main';
 import './public/sass/style.scss';
 
 const App = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState();
+    const [isLoaded, setIsLoaded] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:3000/api/is-authenticated')

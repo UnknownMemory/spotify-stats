@@ -2,7 +2,7 @@
 @import '_reset.scss';
 
 $base_color: #e13356;
-$second_color: #030303;
+$second_color: #fff;
 $accent_color: #f1ed7f;
 
 $size-phone: 576px;
@@ -37,7 +37,7 @@ $size-desktop: 992px;
 }
 
 html {
-    background-color: $second_color;
+    background-color: #030303;
     font-size: 16px;
     height: 100%;
     font-family: CircularSpUI-Book, sans-serif;
@@ -143,6 +143,7 @@ button {
     ul {
         .item {
             .item-number {
+                color: $second_color;
                 font-family: CircularSpUI-Bold, sans-serif;
             }
 
