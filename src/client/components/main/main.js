@@ -26,7 +26,7 @@ const Main = () => {
     };
 
     const getData = (apiType, apiTimeRange) => {
-        fetch(`${process.env.HOST}/api/top/${apiType}/${apiTimeRange}`)
+        fetch(`http://localhost:3000/api/top/${apiType}/${apiTimeRange}`)
             .then(response => response.json())
             .then(data => {
                 if (!done.current) {

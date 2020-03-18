@@ -9,7 +9,7 @@ const App = () => {
     const [isLoaded, setIsLoaded] = useState(true);
 
     useEffect(() => {
-        fetch(process.env.HOST + '/api/is-authenticated')
+        fetch('http://localhost:3000/api/is-authenticated')
             .then(response => response.json())
             .then(data => setIsAuthenticated(data.isAuthenticated));
     }, []);
