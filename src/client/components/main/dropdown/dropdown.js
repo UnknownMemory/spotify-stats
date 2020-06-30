@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 const Dropdown = props => {
     const [current, setCurrent] = useState();
@@ -48,6 +49,11 @@ const Dropdown = props => {
             </div>
         </CSSTransition>
     );
+};
+
+Dropdown.propTypes = {
+    current: PropTypes.string,
+    isOpen: PropTypes.bool
 };
 
 export default Dropdown;

@@ -1,5 +1,6 @@
 import React, {useRef, useEffect, Fragment} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 const MobileMenu = props => {
     const isOn = useRef(null);
@@ -63,6 +64,15 @@ const MobileMenu = props => {
             </div>
         </CSSTransition>
     );
+};
+
+MobileMenu.propTypes = {
+    timeRange: PropTypes.string,
+    type: PropTypes.string,
+    isVisible: PropTypes.bool,
+    setIsVisible: PropTypes.func,
+    handleTimeRange: PropTypes.func,
+    handleType: PropTypes.func
 };
 
 export default MobileMenu;

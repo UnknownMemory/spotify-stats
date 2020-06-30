@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 
 const TopTrack = props => {
     useEffect(() => {}, [props.item]);
@@ -19,6 +20,10 @@ const TopTrack = props => {
     };
 
     return <React.Fragment>{renderItem()}</React.Fragment>;
+};
+
+TopTrack.propTypes = {
+    item: PropTypes.object
 };
 
 export default TopTrack;
